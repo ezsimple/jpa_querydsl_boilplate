@@ -1,5 +1,7 @@
 package com.example.demo2.api.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -17,6 +19,7 @@ public class User {
     @Column(name = "F_USER_PASSWD")
     String userPasswd;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     List<Role> userRoles;
 }
