@@ -1,0 +1,56 @@
+buildscript {
+	ext {
+		queryDslVersion = "4.4.0" // queryDSL 버젼별 차이가 있으므로, 버전을 명시하도록 한다.
+	}
+}
+
+plugins {
+	id 'org.springframework.boot' version '2.5.4'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'war'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	compile 'com.h2database:h2' // default runtimeOnly
+	implementation 'p6spy:p6spy:3.9.1'
+
+	// QueryDSL
+	// gradle 5 이후의 annotationProcessor를 사용하여 진행한다.
+	// 장점으로는 플러그인에 의존하지 않는다, 좀더 깔끔해진다.
+	implementation ("com.querydsl:querydsl-jpa:${queryDslVersion}")
+	annotationProcessor ("com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
+	testImplementation ("com.querydsl:querydsl-jpa:${queryDslVersion}")
+	testAnnotationProcessor ("com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
+
+	// Lombok
+	implementation "org.projectlombok:lombok"
+	annotationProcessor ("org.projectlombok:lombok")
+	testImplementation ("org.projectlombok:lombok")
+	testAnnotationProcessor ("org.projectlombok:lombok")
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+	useJUnitPlatform()
+}
