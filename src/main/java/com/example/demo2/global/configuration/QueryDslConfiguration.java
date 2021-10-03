@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 
 // @EnableJpaAuditing
 @Configuration
-public class JpaConfiguration {
+public class QueryDslConfiguration {
 
     @PersistenceContext
     private EntityManager entityManager;
