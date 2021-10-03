@@ -4,20 +4,19 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "t_user")
+@Table(name = "T_USER")
 public class User {
 
     @Id
-    @Column(name = "ID")
-    String id;
+    @Column(name = "F_USER_ID")
+    String userId;
 
-    @Column(name = "NAME")
-    String name;
+    @Column(name = "F_USER_NAME")
+    String userName;
 
-    @Column(name = "PASSWD")
-    String passwd;
+    @Column(name = "F_USER_PASSWD")
+    String userPasswd;
 
-    @Column(name = "roles")
-    @OneToMany(cascade = CascadeType.ALL)
-    List<Role> roles;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    List<Role> userRoles;
 }
