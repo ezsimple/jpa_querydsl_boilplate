@@ -26,6 +26,10 @@ repositories {
 }
 
 dependencies {
+	// QueryDSL Duplicate class error 해결방법
+	// gradle executes clean task everytime before the assemble task execution.
+	assemble.dependsOn clean
+
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-devtools'
