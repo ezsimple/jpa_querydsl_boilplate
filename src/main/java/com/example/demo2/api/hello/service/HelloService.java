@@ -14,7 +14,8 @@ public class HelloService {
     UserRepository userRepository;
 
     public List<UserDto> findByUserId(String id) {
-        return userRepository.findByUserId(id).fetch();
+        List<UserDto> list = userRepository.findByUserId(id).fetch();
+        return list;
     }
 
 }
