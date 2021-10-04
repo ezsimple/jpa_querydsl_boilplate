@@ -1,13 +1,20 @@
 package com.example.demo2.api.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Getter
+@Setter
+@ToString(callSuper = true)
+// @NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "T_USER")
-public class User {
+public class UserEntity {
 
     @Id
     @Column(name = "F_USER_ID")
@@ -20,6 +27,6 @@ public class User {
     String userPasswd;
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
-    List<Role> userRoles;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userEntity", cascade = CascadeType.ALL)
+    List<RoleEntity> userRoles;
 }

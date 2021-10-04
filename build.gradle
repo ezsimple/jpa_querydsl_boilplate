@@ -27,8 +27,8 @@ repositories {
 
 dependencies {
 	// QueryDSL Duplicate class error 해결방법
-	// gradle executes clean task everytime before the assemble task execution.
-	assemble.dependsOn clean
+	// gradle executes clean Task everytime before the compileJava task execution.
+	compileJava.dependsOn clean
 
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -36,8 +36,8 @@ dependencies {
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	compile 'com.h2database:h2' // default runtimeOnly
-	// implementation 'p6spy:p6spy:3.9.1'
-	implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.7.1")
+
+	compile('org.json:json:20180813')
 
 	// QueryDSL
 	// gradle 5 이후의 annotationProcessor를 사용하여 진행한다.
@@ -52,6 +52,9 @@ dependencies {
 	annotationProcessor ("org.projectlombok:lombok")
 	testImplementation ("org.projectlombok:lombok")
 	testAnnotationProcessor ("org.projectlombok:lombok")
+
+	// PrettyFormat SQL with bind parameters
+	implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.7.1")
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
