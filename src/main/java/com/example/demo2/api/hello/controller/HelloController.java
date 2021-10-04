@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Controller
 public class HelloController {
 
@@ -23,8 +25,8 @@ public class HelloController {
 
     @ResponseBody
     @GetMapping(value = "/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public UserDto findByUserId(@PathVariable("id") String id) {
-        UserDto dto = helloService.findByUserId(id);
-        return dto;
+    public List<UserDto> findByUserId(@PathVariable("id") String id) {
+        List<UserDto> userDtos = helloService.findByUserId(id);
+        return userDtos;
     }
 }

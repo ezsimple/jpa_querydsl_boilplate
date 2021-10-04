@@ -6,6 +6,7 @@ import com.example.demo2.api.entity.UserEntity;
 import com.example.demo2.api.hello.dto.UserDto;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Projections;
+import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
@@ -17,14 +18,14 @@ public interface UserRepository extends JpaRepository<UserEntity, String>, Query
     // @Autowired
     // JPAQueryFactory jpaQueryFactory = null;
 
-    default UserDto findByUserId(String userId) {
+    default JPAQuery<UserDto> findByUserId(String userId) {
         QUserEntity qUserEntity = QUserEntity.userEntity;
         QRoleEntity qRoleEntity = QRoleEntity.roleEntity;
 
         BooleanBuilder booleanBuilder = new BooleanBuilder();
         booleanBuilder.and(qUserEntity.userId.eq(userId));
 
-        UserDto result = jpaQueryFactory()
+        JPAQuery<UserDto> query = jpaQueryFactory()
                 .select(
                         Projections.bean(
                                 UserDto.class
@@ -36,8 +37,8 @@ public interface UserRepository extends JpaRepository<UserEntity, String>, Query
                 .from(qUserEntity)
                 .leftJoin(qRoleEntity).on(qRoleEntity.userId.eq(qUserEntity.userId))
                 .where(booleanBuilder)
-                .fetchFirst();
+                ; // fetch는 dao에서
 
-        return result;
+        return query;
     }
 }
