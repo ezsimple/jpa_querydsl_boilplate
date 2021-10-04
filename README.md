@@ -5,3 +5,8 @@
   - gradle : 6.9.1
   - H2 : 1.4.200 (2019-10-14)
 
+```
+jdbc-url : jdbc:h2:tcp://localhost:9092/../hsqldb/testdb
+username : sa
+password :
+```
