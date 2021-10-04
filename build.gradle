@@ -32,7 +32,8 @@ dependencies {
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	compile 'com.h2database:h2' // default runtimeOnly
-	implementation 'p6spy:p6spy:3.9.1'
+	// implementation 'p6spy:p6spy:3.9.1'
+	implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.7.1")
 
 	// QueryDSL
 	// gradle 5 이후의 annotationProcessor를 사용하여 진행한다.
@@ -53,4 +54,9 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+// gradle build시 test Task Error 보완
+tasks.withType(Test) {
+	scanForTestClasses = false
+	include "**/*Test.class" // whatever Ant pattern matches your test class files
 }

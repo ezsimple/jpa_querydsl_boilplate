@@ -23,13 +23,17 @@ spring:
     show-sql: false
     hibernate:
       ddl-auto: update
-    properties:
-      hibernate:
-        show_sql: true
-        format_sql: true
-        use_sql_comments: true
+    # properties:
+    #  hibernate:
+    #    show_sql: true
+    #    format_sql: true
+    #    use_sql_comments: true
 
 decorator:
   datasource:
     p6spy:
       enable-logging: true
+      multiline: true
+      logging: slf4j
+      tracing:
+        include-parameter-values: true
