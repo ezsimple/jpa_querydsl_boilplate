@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 @ToString(callSuper = true)
 @Entity
 @Table(name = "T_EMP")
@@ -21,6 +21,6 @@ public class EmpEntity { // 사원테이블
     private String name; // 사원명
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "F_ADDR") // T_ADDR.F_ADDR을 가르킴
-    private AddrEntity addr; // 주소 (FK)
+    @JoinColumn(name = "F_ADDR") // T_EMP.F_ADDR(FK) 생성, T_ADDR.F_ADDR을 가르킴
+    private AddrEntity addr; // reference (FK)
 }

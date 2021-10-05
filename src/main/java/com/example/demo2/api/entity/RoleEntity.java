@@ -7,9 +7,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString(callSuper = true)
-// @NoArgsConstructor
-@AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "T_ROLE")
 public class RoleEntity {
@@ -25,5 +23,4 @@ public class RoleEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "F_USER_ID", insertable = false, updatable = false)
     private UserEntity userEntity;
-
 }

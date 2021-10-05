@@ -9,9 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString(callSuper = true)
-// @NoArgsConstructor
-@AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "T_USER")
 public class UserEntity {

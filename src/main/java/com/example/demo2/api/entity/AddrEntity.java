@@ -7,8 +7,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @ToString(callSuper = true)
-@AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="T_ADDR")
 public class AddrEntity {
