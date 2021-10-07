@@ -10,3 +10,7 @@ jdbc-url : jdbc:h2:tcp://localhost:9092/../hsqldb/testdb
 username : sa
 password :
 ```
+## 연관관계 테스트 
+- @OneToOne
+- @OneToMany (단방향)
+- @OneToMany (양방향)
