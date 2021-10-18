@@ -16,6 +16,8 @@ spring:
       jdbc-url: jdbc:h2:../hsqldb/testdb
       username: sa
       password:
+      auto-commit: false
+    tomcat.default-auto-commit: false
   jpa:
     database: h2
     database-platform: org.hibernate.dialect.H2Dialect
@@ -23,11 +25,14 @@ spring:
     show-sql: false
     hibernate:
       ddl-auto: create-drop
-    # properties:
-    #  hibernate:
-    #    show_sql: true
-    #    format_sql: true
-    #    use_sql_comments: true
+    properties:
+      hibernate:
+        jdbc.batch_size : 50
+        order_inserts: true
+        order_updates: true
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
 
 decorator:
   datasource:

@@ -29,7 +29,8 @@ public class HelloController {
         return userDtos;
     }
 
-    public List<CouponRandomEntity> bulkInsert() {
-        return helloService.bulkInsert();
+    @GetMapping(value = "/bulk/insert/{count}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<CouponRandomEntity> bulkInsert(@PathVariable("count") int count) {
+        return helloService.bulkInsert(count);
     }
 }
