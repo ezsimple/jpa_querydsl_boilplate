@@ -1,5 +1,6 @@
 package com.example.demo2.api.hello.controller;
 
+import com.example.demo2.api.entity.CouponRandomEntity;
 import com.example.demo2.api.hello.dto.UserDto;
 import com.example.demo2.api.hello.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,9 @@ public class HelloController {
     public List<UserDto> findByUserId(@PathVariable("id") String id) {
         List<UserDto> userDtos = helloService.findByUserId(id);
         return userDtos;
+    }
+
+    public List<CouponRandomEntity> bulkInsert() {
+        return helloService.bulkInsert();
     }
 }
