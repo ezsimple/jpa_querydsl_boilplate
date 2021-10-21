@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" monitorInterval="30">
+    <Properties>
+        <Property name="LOG_FORMAT">%d{yyyy-MM-dd HH:mm:ss} [%-5p] [%X{sessionID}] (%-35c{1}:%-3L) %m%n</Property>
+       	<!--  
+        <Property name="BASE_DIR">/log/</Property>
+        -->
+    </Properties>
+
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_FORMAT}"/>
+        </Console>
+    </Appenders>
+	
+	<!-- FATAL, ERROR, WARN, INFO, DEBUG, TRACE --> 
+    <Loggers>
+    	
+    	<!-- jdbc.sql Loggers -->
+        <Logger name="jdbc.connection"      level="OFF" additivity="false"><AppenderRef ref="console" /></Logger>
+        <Logger name="jdbc.audit"           level="OFF" additivity="false"><AppenderRef ref="console" /></Logger>
+        <Logger name="jdbc.sqlonly"         level="DEBUG" additivity="false"><AppenderRef ref="console" /></Logger>
+        <Logger name="jdbc.sqltiming"       level="OFF" additivity="false"><AppenderRef ref="console" /></Logger>
+        <Logger name="jdbc.resultset"       level="OFF" additivity="false"><AppenderRef ref="console" /></Logger>
+        <Logger name="jdbc.resultsettable"  level="DEBUG" additivity="false"><AppenderRef ref="console" /></Logger>
+
+        <Logger name="com.zaxxer.hikari"  	level="INFO" additivity="false"><AppenderRef ref="console" /></Logger>
+        <Logger name="org.hibernate.engine" level="INFO" additivity="false"><AppenderRef ref="console" /></Logger>
+        <Logger name="org.springframework"  level="INFO" additivity="false"><AppenderRef ref="console" /></Logger>
+        
+        <Logger name="com.snaps.oround"  	level="DEBUG" additivity="false"><AppenderRef ref="console" /></Logger>
+        
+        <Root level="INFO">
+        	<Priority value="off"/>
+            <AppenderRef ref="console"/>
+        </Root>
+        
+    </Loggers>
+</Configuration>

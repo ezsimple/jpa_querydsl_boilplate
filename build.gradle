@@ -21,6 +21,7 @@ configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
+	compile.exclude module: 'spring-boot-starter-logging'
 }
 
 repositories {
@@ -42,6 +43,9 @@ dependencies {
 
 	compile('org.json:json:20180813')
 
+	implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+
 	// QueryDSL
 	// gradle 5 이후의 annotationProcessor를 사용하여 진행한다.
 	// 장점으로는 플러그인에 의존하지 않는다, 좀더 깔끔해진다.
@@ -61,6 +65,8 @@ dependencies {
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation('joda-time:joda-time:2.10.10')
+
+	implementation 'org.apache.commons:commons-lang3:3.1'
 }
 
 test {

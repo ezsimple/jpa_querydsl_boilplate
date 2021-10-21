@@ -12,8 +12,9 @@ spring:
       path: /h2-console
   datasource:
     hikari:
-      driver-class-name: org.h2.Driver
-      jdbc-url: jdbc:h2:../hsqldb/testdb
+      # driver-class-name: org.h2.Driver
+      driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+      jdbc-url: jdbc:log4jdbc:h2:../hsqldb/testdb
       username: sa
       password:
       auto-commit: false
@@ -30,9 +31,9 @@ spring:
         jdbc.batch_size : 50
         order_inserts: true
         order_updates: true
-        show_sql: true
-        format_sql: true
-        use_sql_comments: true
+        # show_sql: false
+        # format_sql: false
+        # use_sql_comments: false
 
 decorator:
   datasource:

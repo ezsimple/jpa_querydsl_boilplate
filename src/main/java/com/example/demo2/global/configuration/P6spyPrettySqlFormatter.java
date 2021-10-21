@@ -2,6 +2,7 @@ package com.example.demo2.global.configuration;
 
 import com.p6spy.engine.logging.Category;
 import com.p6spy.engine.spy.appender.MessageFormattingStrategy;
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.engine.jdbc.internal.FormatStyle;
 
 import java.text.SimpleDateFormat;
@@ -28,6 +29,8 @@ public class P6spyPrettySqlFormatter implements MessageFormattingStrategy {
                 sql = FormatStyle.DDL.getFormatter().format(sql);
             }else {
                 sql = FormatStyle.BASIC.getFormatter().format(sql);
+                if(StringUtils.startsWith(tmpsql, "select"))
+                    sql = sql.replaceAll(" as [a-z].*_", "");
             }
             sql = "|\nHibernate(p6spy):"+ sql;
         }
