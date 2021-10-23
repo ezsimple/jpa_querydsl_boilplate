@@ -20,38 +20,40 @@ public class P6spyPrettySqlFormatter implements MessageFormattingStrategy {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         String callTrace = getCallStackTrace();
-        return sdf.format(currentDate) + " | "+ "OperationTime : "+ elapsed + "ms" + sql + callTrace;
+        return sdf.format(currentDate) + " | " + "OperationTime : " + elapsed + "ms" + sql + callTrace;
     }
+
+    private final String basePackage = "com.example.demo2";
 
     private String getCallStackTrace() {
         StringBuffer buf = new StringBuffer();
         StackTraceElement[] stackTrace = new Throwable().getStackTrace();
-        for(int i = 0; i < stackTrace.length; i++) {
-            String trace = stackTrace[i].toString()+'\n';
+        for (int i = 0; i < stackTrace.length; i++) {
+            String trace = stackTrace[i].toString() + '\n';
             if (trace.contains(this.getClass().getName())) continue;
-            if (trace.startsWith("com.example.demo2")) {
+            if (trace.startsWith(basePackage)) {
                 buf.append(trace);
                 break; // 가장 마지막에 호출한 소스만 찾기
             }
         }
-        return "\n\n\t" + buf.toString();
+        return "\n\n\t" + buf;
     }
 
-    private String formatSql(String category,String sql) {
-        if(sql ==null || sql.trim().equals("")) return sql;
+    private String formatSql(String category, String sql) {
+        if (sql == null || sql.trim().equals("")) return sql;
 
         // Only format Statement, distinguish DDL And DML
         if (Category.STATEMENT.getName().equals(category)) {
             String tmpsql = sql.trim().toLowerCase(Locale.ROOT);
-            if(tmpsql.startsWith("create") || tmpsql.startsWith("alter") || tmpsql.startsWith("comment")) {
+            if (tmpsql.startsWith("create") || tmpsql.startsWith("alter") || tmpsql.startsWith("comment")) {
                 sql = FormatStyle.DDL.getFormatter().format(sql);
-            }else {
+            } else {
                 sql = FormatStyle.BASIC.getFormatter().format(sql);
-                if(StringUtils.startsWith(tmpsql, "select"))
+                if (StringUtils.startsWith(tmpsql, "select"))
                     sql = sql.replaceAll(" as [a-z].*_", "");
 
             }
-            sql = "|\nHibernate(p6spy):"+ sql;
+            sql = "|\nHibernate(p6spy):" + sql;
         }
 
         return sql;
