@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -29,6 +30,7 @@ public class HelloService {
 
     public List<UserDto> findByUserId(String id) {
         List<UserDto> list = userRepository.findByUserId(id).fetch();
+        if(list == null) Collections.emptyList();
         return list;
     }
 
