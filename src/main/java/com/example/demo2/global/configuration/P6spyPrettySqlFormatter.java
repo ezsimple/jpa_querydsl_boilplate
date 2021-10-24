@@ -13,6 +13,8 @@ import java.util.Locale;
 @Slf4j
 public class P6spyPrettySqlFormatter implements MessageFormattingStrategy {
 
+    private final String basePackage = "com.example.demo2";
+
     @Override
     public String formatMessage(int connectionId, String now, long elapsed, String category, String prepared, String sql, String url) {
         sql = formatSql(category, sql);
@@ -23,20 +25,18 @@ public class P6spyPrettySqlFormatter implements MessageFormattingStrategy {
         return sdf.format(currentDate) + " | " + "OperationTime : " + elapsed + "ms" + sql + callTrace;
     }
 
-    private final String basePackage = "com.example.demo2";
-
     private String getCallStackTrace() {
         StringBuffer buf = new StringBuffer();
         StackTraceElement[] stackTrace = new Throwable().getStackTrace();
-        for (int i = 0; i < stackTrace.length; i++) {
+        for (int i = stackTrace.length - 1; i >= 0; i--) {
             String trace = stackTrace[i].toString() + '\n';
             if (trace.contains(this.getClass().getName())) continue;
             if (trace.startsWith(basePackage)) {
-                buf.append(trace);
-                break; // 가장 마지막에 호출한 소스만 찾기
+                buf.append('\t' + trace);
+                // break; // 가장 마지막에 호출한 소스만 찾기
             }
         }
-        return "\n\n\t" + buf;
+        return "\n\n" + buf;
     }
 
     private String formatSql(String category, String sql) {

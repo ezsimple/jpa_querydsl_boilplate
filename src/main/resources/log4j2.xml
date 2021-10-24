@@ -19,7 +19,7 @@
     	<!-- jdbc.sql Loggers -->
         <Logger name="jdbc.connection"      level="OFF" additivity="false"><AppenderRef ref="console" /></Logger>
         <Logger name="jdbc.audit"           level="OFF" additivity="false"><AppenderRef ref="console" /></Logger>
-        <Logger name="jdbc.sqlonly"         level="DEBUG" additivity="false"><AppenderRef ref="console" /></Logger>
+        <Logger name="jdbc.sqlonly"         level="OFF" additivity="false"><AppenderRef ref="console" /></Logger>
         <Logger name="jdbc.sqltiming"       level="OFF" additivity="false"><AppenderRef ref="console" /></Logger>
         <Logger name="jdbc.resultset"       level="OFF" additivity="false"><AppenderRef ref="console" /></Logger>
         <Logger name="jdbc.resultsettable"  level="DEBUG" additivity="false"><AppenderRef ref="console" /></Logger>
@@ -28,10 +28,9 @@
         <Logger name="org.hibernate.engine" level="INFO" additivity="false"><AppenderRef ref="console" /></Logger>
         <Logger name="org.springframework"  level="INFO" additivity="false"><AppenderRef ref="console" /></Logger>
         
-        <Logger name="com.snaps.oround"  	level="DEBUG" additivity="false"><AppenderRef ref="console" /></Logger>
+        <Logger name="com.example.demo2"  	level="DEBUG" additivity="false"><AppenderRef ref="console" /></Logger>
         
         <Root level="INFO">
-        	<Priority value="off"/>
             <AppenderRef ref="console"/>
         </Root>
         
