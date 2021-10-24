@@ -13,7 +13,7 @@
         </Console>
     </Appenders>
 	
-	<!-- FATAL, ERROR, WARN, INFO, DEBUG, TRACE --> 
+	<!-- OFF, FATAL, ERROR, WARN, INFO, DEBUG, TRACE -->
     <Loggers>
     	
     	<!-- jdbc.sql Loggers -->
@@ -30,7 +30,7 @@
         
         <Logger name="com.example.demo2"  	level="DEBUG" additivity="false"><AppenderRef ref="console" /></Logger>
         
-        <Root level="INFO">
+        <Root level="ERROR" additivity="false">
             <AppenderRef ref="console"/>
         </Root>
         
