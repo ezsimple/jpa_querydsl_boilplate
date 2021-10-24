@@ -27,7 +27,8 @@
         <Logger name="com.zaxxer.hikari"  	level="INFO" additivity="false"><AppenderRef ref="console" /></Logger>
         <Logger name="org.hibernate.engine" level="INFO" additivity="false"><AppenderRef ref="console" /></Logger>
         <Logger name="org.springframework"  level="INFO" additivity="false"><AppenderRef ref="console" /></Logger>
-        
+        <Logger name="org.apache.logging.log4j" level="ERROR" additivity="false"><AppenderRef ref="console" /></Logger>
+
         <Logger name="com.example.demo2"  	level="DEBUG" additivity="false"><AppenderRef ref="console" /></Logger>
         
         <Root level="ERROR" additivity="false">
