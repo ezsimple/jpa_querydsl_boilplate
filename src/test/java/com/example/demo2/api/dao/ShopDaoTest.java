@@ -9,6 +9,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -19,9 +20,14 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class ShopDaoTest {
 
-    private final CustomerRepository customerRepository;
-    private final ShopRepository shopRepository;
-    private final ShopDao shopDao;
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    @Autowired
+    private ShopRepository shopRepository;
+
+    @Autowired
+    private ShopDao shopDao;
 
     @AfterEach
     void after() {
