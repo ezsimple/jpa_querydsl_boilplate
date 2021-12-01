@@ -2,8 +2,8 @@ server:
   port: 8080
   devtools.restart.enable: false
 
-logging.level:
-  root: INFO
+# logging.level:
+#  root: INFO
 
 spring:
   h2:
