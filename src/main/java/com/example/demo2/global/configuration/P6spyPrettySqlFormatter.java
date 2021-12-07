@@ -7,13 +7,17 @@ import org.apache.commons.lang3.StringUtils;
 import org.hibernate.engine.jdbc.internal.FormatStyle;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Slf4j
 public class P6spyPrettySqlFormatter implements MessageFormattingStrategy {
 
     private final String basePackage = "com.example.demo2";
+    private final List<String> filterStrings = Arrays.asList(new String[]{"<generated>", "doFilterInternal"});
 
     @Override
     public String formatMessage(int connectionId, String now, long elapsed, String category, String prepared, String sql, String url) {
@@ -31,12 +35,27 @@ public class P6spyPrettySqlFormatter implements MessageFormattingStrategy {
         for (int i = stackTrace.length - 1; i >= 0; i--) {
             String trace = stackTrace[i].toString() + '\n';
             if (trace.contains(this.getClass().getName())) continue;
+            if (okSkipFilter(trace)) continue;
             if (trace.startsWith(basePackage)) {
                 buf.append('\t' + trace);
                 // break; // 가장 마지막에 호출한 소스만 찾기
             }
         }
         return "\n\n" + buf;
+    }
+
+    private boolean okSkipFilter(String trace) {
+//        AtomicBoolean skipFlag = new AtomicBoolean(false);
+//        filterStrings.stream().forEach(o -> {
+//            if (trace.contains(o)) {
+//                skipFlag.set(true);
+//                return;
+//            }
+//        });
+//        if (skipFlag.get()) return true;
+        return filterStrings.stream()
+                .map(o -> trace.contains(o))
+                .findAny().orElse(false);
     }
 
     private String formatSql(String category, String sql) {
@@ -49,11 +68,11 @@ public class P6spyPrettySqlFormatter implements MessageFormattingStrategy {
                 sql = FormatStyle.DDL.getFormatter().format(sql);
             } else {
                 sql = FormatStyle.BASIC.getFormatter().format(sql);
-                if (StringUtils.startsWith(tmpsql, "select"))
-                    sql = sql.replaceAll(" as [a-z].*_", "");
-
+                if (StringUtils.startsWith(tmpsql, "select")) {
+                    sql = sql.replaceAll(" as [fc].*_[0-9a-zA-Z].*_", "");
+                }
             }
-            sql = "|\nHibernate(p6spy):" + sql;
+            sql = "|\nHibernate:" + sql;
         }
 
         return sql;
