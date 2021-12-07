@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 @Slf4j
 public class P6spyPrettySqlFormatter implements MessageFormattingStrategy {
@@ -45,17 +44,10 @@ public class P6spyPrettySqlFormatter implements MessageFormattingStrategy {
     }
 
     private boolean okSkipFilter(String trace) {
-//        AtomicBoolean skipFlag = new AtomicBoolean(false);
-//        filterStrings.stream().forEach(o -> {
-//            if (trace.contains(o)) {
-//                skipFlag.set(true);
-//                return;
-//            }
-//        });
-//        if (skipFlag.get()) return true;
-        return filterStrings.stream()
+        Boolean flag = filterStrings.stream()
                 .map(o -> trace.contains(o))
-                .findAny().orElse(false);
+                .findFirst().orElse(false);
+        return flag;
     }
 
     private String formatSql(String category, String sql) {
