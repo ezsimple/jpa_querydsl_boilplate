@@ -65,6 +65,7 @@ dependencies {
 
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude(group: 'com.vaadin.external.google', module: 'android-json')
+		exclude(group: 'org.junit.vintage')
 	}
 	implementation('joda-time:joda-time:2.10.10')
 
