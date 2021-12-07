@@ -31,9 +31,6 @@ spring:
         jdbc.batch_size : 50
         order_inserts: true
         order_updates: true
-        # show_sql: false
-        # format_sql: false
-        # use_sql_comments: false
 
 decorator:
   datasource:
