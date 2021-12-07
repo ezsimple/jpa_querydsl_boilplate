@@ -5,6 +5,7 @@ import com.example.demo2.api.entity.ShopEntity;
 import com.example.demo2.api.repository.CustomerRepository;
 import com.example.demo2.api.repository.ShopRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,11 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
+@Slf4j
 @RequiredArgsConstructor
 @ExtendWith(SpringExtension.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ShopDaoTest {
 
     @Autowired
@@ -31,8 +35,8 @@ class ShopDaoTest {
 
     @AfterEach
     void after() {
-        customerRepository.deleteAllInBatch();
-        shopRepository.deleteAllInBatch();
+//        customerRepository.deleteAllInBatch();
+//        shopRepository.deleteAllInBatch();
     }
 
     @BeforeEach
@@ -46,7 +50,8 @@ class ShopDaoTest {
 
     @Test
     void test() {
-        shopDao.crossJoin().fetch();
+        List<String> result = shopDao.crossJoin().fetch();
+        log.debug("{}", result);
     }
 
     @AfterEach
