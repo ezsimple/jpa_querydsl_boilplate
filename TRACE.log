@@ -1,0 +1,10 @@
+	com.p6spy.engine.wrapper.PreparedStatementWrapper.executeQuery(PreparedStatementWrapper.java:83)
+	com.p6spy.engine.event.CompoundJdbcEventListener.onAfterExecuteQuery(CompoundJdbcEventListener.java:201)
+	com.p6spy.engine.event.SimpleJdbcEventListener.onAfterExecuteQuery(SimpleJdbcEventListener.java:131)
+	com.p6spy.engine.logging.LoggingEventListener.onAfterAnyExecute(LoggingEventListener.java:44)
+	com.p6spy.engine.logging.LoggingEventListener.logElapsed(LoggingEventListener.java:107)
+	com.p6spy.engine.common.P6LogQuery.logElapsed(P6LogQuery.java:203)
+	com.p6spy.engine.common.P6LogQuery.doLogElapsed(P6LogQuery.java:91)
+	com.p6spy.engine.common.P6LogQuery.doLog(P6LogQuery.java:121)
+	com.p6spy.engine.spy.appender.Slf4JLogger.logSQL(Slf4JLogger.java:50)
+
