@@ -1,6 +1,5 @@
 package com.example.demo2.global.annotation;
 
-import com.example.demo2.global.configuration.P6spyConfiguration;
 import com.github.gavlyukovskiy.boot.jdbc.decorator.DataSourceDecoratorAutoConfiguration;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -16,6 +15,6 @@ import java.lang.annotation.*;
 @DataJpaTest(showSql = false)
 @ImportAutoConfiguration(DataSourceDecoratorAutoConfiguration.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Import(P6spyConfiguration.class)
+// @Import(P6spyConfiguration.class)
 @interface CustomDataJpaTest {
 }
